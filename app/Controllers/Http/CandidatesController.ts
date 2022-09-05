@@ -1,34 +1,34 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-const BR = require("./BR.json")
+const BR = require("../../../assets/data/BR.json")
 
-const AC = require("./AC.json")
-const AL = require("./AL.json")
-const AM = require("./AM.json")
-const AP = require("./AP.json")
-const BA = require("./BA.json")
-const CE = require("./CE.json")
-const DF = require("./DF.json")
-const ES = require("./ES.json")
-const GO = require("./GO.json")
-const MA = require("./MA.json")
-const MG = require("./MG.json")
-const MS = require("./MS.json")
-const MT = require("./MT.json")
-const PA = require("./PA.json")
-const PB = require("./PB.json")
-const PE = require("./PE.json")
-const PI = require("./PI.json")
-const PR = require("./PR.json")
-const RJ = require("./RJ.json")
-const RN = require("./RN.json")
-const RO = require("./RO.json")
-const RR = require("./RR.json")
-const RS = require("./RS.json")
-const SC = require("./SC.json")
-const SE = require("./SE.json")
-const SP = require("./SP.json")
-const TO = require("./TO.json")
+const AC = require("../../../assets/data/AC.json")
+const AL = require("../../../assets/data/AL.json")
+const AM = require("../../../assets/data/AM.json")
+const AP = require("../../../assets/data/AP.json")
+const BA = require("../../../assets/data/BA.json")
+const CE = require("../../../assets/data/CE.json")
+const DF = require("../../../assets/data/DF.json")
+const ES = require("../../../assets/data/ES.json")
+const GO = require("../../../assets/data/GO.json")
+const MA = require("../../../assets/data/MA.json")
+const MG = require("../../../assets/data/MG.json")
+const MS = require("../../../assets/data/MS.json")
+const MT = require("../../../assets/data/MT.json")
+const PA = require("../../../assets/data/PA.json")
+const PB = require("../../../assets/data/PB.json")
+const PE = require("../../../assets/data/PE.json")
+const PI = require("../../../assets/data/PI.json")
+const PR = require("../../../assets/data/PR.json")
+const RJ = require("../../../assets/data/RJ.json")
+const RN = require("../../../assets/data/RN.json")
+const RO = require("../../../assets/data/RO.json")
+const RR = require("../../../assets/data/RR.json")
+const RS = require("../../../assets/data/RS.json")
+const SC = require("../../../assets/data/SC.json")
+const SE = require("../../../assets/data/SE.json")
+const SP = require("../../../assets/data/SP.json")
+const TO = require("../../../assets/data/TO.json")
 
 export default class CandidatesController {
   public async show({ request }: HttpContextContract) {
@@ -72,8 +72,10 @@ export default class CandidatesController {
           const cdc = request.qs().cdc
 
           if (states[state][cdc]) {
-            // return { ...states[state][cdc] }
-            return { ...states.BR, ...states[state][cdc] }
+            let data = {}
+            data[cdc] = [ ...states[state][cdc] ]
+            
+            return { ...states.BR, ...data }
           } else {
             return { ...states.BR, ...states[state] }
           }
