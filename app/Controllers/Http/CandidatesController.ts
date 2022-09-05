@@ -63,6 +63,17 @@ export default class CandidatesController {
       TO
     }
 
+    // CDC (Código do cargo)
+    // 1 - PRESIDENTE
+    // 2 - VICE-PRESIDENTE
+    // 3 - GOVERNADOR
+    // 4 - VICE-GOVERNADOR
+    // 5 - SENADOR
+    // 9 - 1º SUPLENTE
+    // 10 - 2º SUPLENTE
+    // 6 - DEPUTADO FEDERAL
+    // 7 - DEPUTADO ESTADUAL
+
     try {
       // console.log(request.qs());
       const state = request.params().state
@@ -74,7 +85,7 @@ export default class CandidatesController {
           if (states[state][cdc]) {
             let data = {}
             data[cdc] = [ ...states[state][cdc] ]
-            
+
             return { ...states.BR, ...data }
           } else {
             return { ...states.BR, ...states[state] }
