@@ -26,4 +26,6 @@ Route.get('/', async () => {
 
 Route.get('/candidates/:state', 'CandidatesController.show')
 
+Route.get('/vagas/:state', 'VagasController.show')
+
 // Route.get('/proposals/:state', 'ProposalsController.show')
