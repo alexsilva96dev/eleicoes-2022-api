@@ -78,6 +78,8 @@ export default class CandidatesController {
       // console.log(request.qs());
       const state = request.params().state
 
+      const page = request.qs().page
+
       if (state) {
         if (states[state]) {
           const cdc = request.qs().cdc
