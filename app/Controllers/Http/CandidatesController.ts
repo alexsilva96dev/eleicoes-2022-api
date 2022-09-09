@@ -79,26 +79,130 @@ export default class CandidatesController {
       // console.log(request.qs());
       const state = request.params().state
 
-      const page = request.qs().page
+      const page = parseInt(request.qs().page)
+
+      let pages = {}
+      let dataPages = {}
 
       if (state) {
         if (states[state]) {
           const cdc = request.qs().cdc
 
-          if (states[state][cdc]) {
+          if (false && states[state][cdc]) {
             let data = {}
             data[cdc] = [ ...states[state][cdc] ]
 
             return { ...states.BR, ...data }
           } else {
-            return { ...states.BR, ...states[state] }
+            if (page >= 1) {
+              if (states[state]["6"]) {
+                pages["6"] = states[state]["6"]["pages"]
+                dataPages["6"] = states[state]["6"][page.toString()] ? states[state]["6"][page.toString()] : []
+              }
+      
+              if (states[state]["7"]) {
+                pages["7"] = states[state]["7"]["pages"]
+                dataPages["7"] = states[state]["7"][page.toString()] ? states[state]["7"][page.toString()] : []
+              }
+      
+              if (states[state]["8"]) {
+                pages["8"] = states[state]["8"]["pages"]
+                dataPages["8"] = states[state]["8"][page.toString()] ? states[state]["8"][page.toString()] : []
+              }
+            } else {
+              if (states[state]["6"]) {
+                pages["6"] = states[state]["6"]["pages"]
+                dataPages["6"] = states[state]["6"]["1"]
+              }
+      
+              if (states[state]["7"]) {
+                pages["7"] = states[state]["7"]["pages"]
+                dataPages["7"] = states[state]["7"]["1"]
+              }
+      
+              if (states[state]["8"]) {
+                pages["8"] = states[state]["8"]["pages"]
+                dataPages["8"] = states[state]["8"]["1"]
+              }
+            }
+    
+            return { ...states.BR, ...states[state], ...dataPages, pages }
+
+            // return { ...states.BR, ...states[state] }
           }
         } else {
-          return { ...states.BR, ...states["DF"] }
+          if (page >= 1) {
+            if (states["DF"]["6"]) {
+              pages["6"] = states["DF"]["6"]["pages"]
+              dataPages["6"] = states["DF"]["6"][page.toString()] ? states["DF"]["6"][page.toString()] : []
+            }
+    
+            if (states["DF"]["7"]) {
+              pages["7"] = states["DF"]["7"]["pages"]
+              dataPages["7"] = states["DF"]["7"][page.toString()] ? states["DF"]["7"][page.toString()] : []
+            }
+    
+            if (states["DF"]["8"]) {
+              pages["8"] = states["DF"]["8"]["pages"]
+              dataPages["8"] = states["DF"]["8"][page.toString()] ? states["DF"]["8"][page.toString()] : []
+            }
+          } else {
+            if (states["DF"]["6"]) {
+              pages["6"] = states["DF"]["6"]["pages"]
+              dataPages["6"] = states["DF"]["6"]["1"]
+            }
+    
+            if (states["DF"]["7"]) {
+              pages["7"] = states["DF"]["7"]["pages"]
+              dataPages["7"] = states["DF"]["7"]["1"]
+            }
+    
+            if (states["DF"]["8"]) {
+              pages["8"] = states["DF"]["8"]["pages"]
+              dataPages["8"] = states["DF"]["8"]["1"]
+            }
+          }
+  
+          return { ...states.BR, ...states["DF"], ...dataPages, pages }
+
+          // return { ...states.BR, ...states["DF"] }
         }
+
         // return { ...states.BR, ...states[request.params().state ? request.params().state : "DF"] }
       } else {
-        return { ...states.BR, ...states["DF"] }
+        if (page >= 1) {
+          if (states["DF"]["6"]) {
+            pages["6"] = states["DF"]["6"]["pages"]
+            dataPages["6"] = states["DF"]["6"][page.toString()] ? states["DF"]["6"][page.toString()] : []
+          }
+  
+          if (states["DF"]["7"]) {
+            pages["7"] = states["DF"]["7"]["pages"]
+            dataPages["7"] = states["DF"]["7"][page.toString()] ? states["DF"]["7"][page.toString()] : []
+          }
+  
+          if (states["DF"]["8"]) {
+            pages["8"] = states["DF"]["8"]["pages"]
+            dataPages["8"] = states["DF"]["8"][page.toString()] ? states["DF"]["8"][page.toString()] : []
+          }
+        } else {
+          if (states["DF"]["6"]) {
+            pages["6"] = states["DF"]["6"]["pages"]
+            dataPages["6"] = states["DF"]["6"]["1"]
+          }
+  
+          if (states["DF"]["7"]) {
+            pages["7"] = states["DF"]["7"]["pages"]
+            dataPages["7"] = states["DF"]["7"]["1"]
+          }
+  
+          if (states["DF"]["8"]) {
+            pages["8"] = states["DF"]["8"]["pages"]
+            dataPages["8"] = states["DF"]["8"]["1"]
+          }
+        }
+
+        return { ...states.BR, ...states["DF"], ...dataPages, pages }
       }  
     } catch (error) {
       console.log(error)
