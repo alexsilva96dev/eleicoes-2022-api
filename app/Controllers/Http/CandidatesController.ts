@@ -88,11 +88,49 @@ export default class CandidatesController {
         if (states[state]) {
           const cdc = request.qs().cdc
 
-          if (false && states[state][cdc]) {
-            let data = {}
-            data[cdc] = [ ...states[state][cdc] ]
+          if (states[state][cdc]) {
+            // let data = {}
+            // data[cdc] = [ ...states[state][cdc] ]
 
-            return { ...states.BR, ...data }
+            if (["6", "7", "8"].includes(cdc)) {
+              if (page >= 1) {
+                if (states[state][cdc]) {
+                  pages[cdc] = states[state][cdc]["pages"]
+                  dataPages[cdc] = states[state][cdc][page.toString()] ? states[state][cdc][page.toString()] : []
+                }
+        
+                // if (states[state]["7"]) {
+                //   pages["7"] = states[state]["7"]["pages"]
+                //   dataPages["7"] = states[state]["7"][page.toString()] ? states[state]["7"][page.toString()] : []
+                // }
+        
+                // if (states[state]["8"]) {
+                //   pages["8"] = states[state]["8"]["pages"]
+                //   dataPages["8"] = states[state]["8"][page.toString()] ? states[state]["8"][page.toString()] : []
+                // }
+              } else {
+                if (states[state][cdc]) {
+                  pages[cdc] = states[state][cdc]["pages"]
+                  dataPages[cdc] = states[state][cdc]["1"]
+                }
+        
+                // if (data["7"]) {
+                //   pages["7"] = states[state]["7"]["pages"]
+                //   dataPages["7"] = states[state]["7"]["1"]
+                // }
+        
+                // if (data["8"]) {
+                //   pages["8"] = states[state]["8"]["pages"]
+                //   dataPages["8"] = states[state]["8"]["1"]
+                // }
+              }
+            } else {
+              // data[cdc] = [ ...states[state][cdc] ]
+              dataPages[cdc] = [ ...states[state][cdc] ]
+            }
+
+            return { ...states.BR, ...dataPages }
+            // return { ...states.BR, ...data }
           } else {
             if (page >= 1) {
               if (states[state]["6"]) {
