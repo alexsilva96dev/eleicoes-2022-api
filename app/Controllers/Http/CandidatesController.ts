@@ -129,7 +129,7 @@ export default class CandidatesController {
               dataPages[cdc] = [ ...states[state][cdc] ]
             }
 
-            return { ...states.BR, ...dataPages }
+            return { ...states.BR, ...dataPages, pages }
             // return { ...states.BR, ...data }
           } else {
             if (page >= 1) {
