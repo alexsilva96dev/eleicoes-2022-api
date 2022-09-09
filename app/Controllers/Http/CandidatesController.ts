@@ -73,6 +73,7 @@ export default class CandidatesController {
     // 10 - 2º SUPLENTE
     // 6 - DEPUTADO FEDERAL
     // 7 - DEPUTADO ESTADUAL
+    // 8 - DEPUTADO DISTRITAL
 
     try {
       // console.log(request.qs());
