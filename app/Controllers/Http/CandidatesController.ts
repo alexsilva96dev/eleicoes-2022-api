@@ -133,7 +133,7 @@ export default class CandidatesController {
               dataPages[cdc] = [ ...states[state][cdc] ]
             }
 
-            return { ...states.BR, ...dataPages, pages, vagas: { ...vagas.BRL, ...vagas[state] } }
+            return { ...states.BR, ...dataPages, pages, vagas: { ...vagas.BR, ...vagas[state] } }
             // return { ...states.BR, ...data }
           } else {
             if (page >= 1) {
@@ -168,7 +168,7 @@ export default class CandidatesController {
               }
             }
     
-            return { ...states.BR, ...states[state], ...dataPages, pages, vagas: { ...vagas.BRL, ...vagas[state] } }
+            return { ...states.BR, ...states[state], ...dataPages, pages, vagas: { ...vagas.BR, ...vagas[state] } }
 
             // return { ...states.BR, ...states[state] }
           }
@@ -205,7 +205,7 @@ export default class CandidatesController {
             }
           }
   
-          return { ...states.BR, ...states["DF"], ...dataPages, pages, vagas: { ...vagas.BRL, ...vagas["DF"] } }
+          return { ...states.BR, ...states["DF"], ...dataPages, pages, vagas: { ...vagas.BR, ...vagas["DF"] } }
 
           // return { ...states.BR, ...states["DF"] }
         }
@@ -244,7 +244,7 @@ export default class CandidatesController {
           }
         }
 
-        return { ...states.BR, ...states["DF"], ...dataPages, pages, vagas: { ...vagas.BRL, ...vagas["DF"] } }
+        return { ...states.BR, ...states["DF"], ...dataPages, pages, vagas: { ...vagas.BR, ...vagas["DF"] } }
       }  
     } catch (error) {
       console.log(error)
