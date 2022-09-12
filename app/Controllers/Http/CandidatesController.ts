@@ -30,6 +30,8 @@ const SE = require("../../../assets/data/SE.json")
 const SP = require("../../../assets/data/SP.json")
 const TO = require("../../../assets/data/TO.json")
 
+const BRASIL = require("../../../assets/vagas/BRASIL.json")
+
 export default class CandidatesController {
   public async show({ request }: HttpContextContract) {
     const states = {
@@ -62,6 +64,8 @@ export default class CandidatesController {
       SP, 
       TO
     }
+
+    const vagas = BRASIL
 
     // CDC (Código do cargo)
     // 1 - PRESIDENTE
@@ -129,7 +133,7 @@ export default class CandidatesController {
               dataPages[cdc] = [ ...states[state][cdc] ]
             }
 
-            return { ...states.BR, ...dataPages, pages }
+            return { ...states.BR, ...dataPages, pages, vagas: vagas[state] }
             // return { ...states.BR, ...data }
           } else {
             if (page >= 1) {
@@ -164,7 +168,7 @@ export default class CandidatesController {
               }
             }
     
-            return { ...states.BR, ...states[state], ...dataPages, pages }
+            return { ...states.BR, ...states[state], ...dataPages, pages, vagas: vagas[state] }
 
             // return { ...states.BR, ...states[state] }
           }
@@ -201,7 +205,7 @@ export default class CandidatesController {
             }
           }
   
-          return { ...states.BR, ...states["DF"], ...dataPages, pages }
+          return { ...states.BR, ...states["DF"], ...dataPages, pages, vagas: vagas["DF"] }
 
           // return { ...states.BR, ...states["DF"] }
         }
@@ -240,7 +244,7 @@ export default class CandidatesController {
           }
         }
 
-        return { ...states.BR, ...states["DF"], ...dataPages, pages }
+        return { ...states.BR, ...states["DF"], ...dataPages, pages, vagas: vagas["DF"] }
       }  
     } catch (error) {
       console.log(error)
